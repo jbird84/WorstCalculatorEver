@@ -12,12 +12,21 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var firstNumberTextField: UITextField!
     @IBOutlet weak var secondNumberTextField: UITextField!
-    @IBOutlet weak var AnswerTextField: UITextField!
+    
     
     var result: Double = 0
+    let theAnswerSegue = "TheAnswer"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == theAnswerSegue {
+            let destinationVC = segue.destination as! TheAnswerViewController
+            destinationVC.result = result
+        }
     }
     
     
@@ -26,7 +35,7 @@ class ViewController: UIViewController {
         if let firstNum = Double(firstNumberTextField.text!) {
             if let secondNum = Double(secondNumberTextField.text!) {
                 result = firstNum + secondNum
-                AnswerTextField.text = String(result)
+                performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
         }
     }
@@ -37,7 +46,7 @@ class ViewController: UIViewController {
         if let firstNum = Double(firstNumberTextField.text!) {
             if let secondNum = Double(secondNumberTextField.text!) {
                 result = firstNum - secondNum
-                AnswerTextField.text = String(result)
+                performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
         }
     }
@@ -48,7 +57,7 @@ class ViewController: UIViewController {
         if let firstNum = Double(firstNumberTextField.text!) {
             if let secondNum = Double(secondNumberTextField.text!) {
                 result = firstNum * secondNum
-                AnswerTextField.text = String(result)
+                performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
         }
     }
@@ -59,7 +68,7 @@ class ViewController: UIViewController {
         if let firstNum = Double(firstNumberTextField.text!) {
             if let secondNum = Double(secondNumberTextField.text!) {
                 result = firstNum / secondNum
-                AnswerTextField.text = String(result)
+                performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
         }
     }
