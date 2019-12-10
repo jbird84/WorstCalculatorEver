@@ -9,28 +9,15 @@
 import UIKit
 
 class TheAnswerViewController: UIViewController {
-
+    
     
     @IBOutlet weak var theAnswerLabel: UILabel!
     
     var result: Double = 0
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        var theResult: Double = Double(theAnswerLabel.text!)!
-        
-         theResult = result
+    override func viewDidLoad() {
+        let resultAsString: String = String(result)
+        theAnswerLabel.text! = resultAsString
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
