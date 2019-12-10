@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondNumberTextField: UITextField!
     
     
+    
     var result: Double = 0
     let theAnswerSegue = "TheAnswer"
     
@@ -32,12 +33,15 @@ class ViewController: UIViewController {
     
     
     @IBAction func additionPressed(_ sender: Any) {
+        
         if let firstNum = Double(firstNumberTextField.text!) {
             if let secondNum = Double(secondNumberTextField.text!) {
                 result = firstNum + secondNum
                 performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
+            textFieldTwoIsBlank()
         }
+        textFieldOneIsBlank()
     }
     
     
@@ -48,7 +52,9 @@ class ViewController: UIViewController {
                 result = firstNum - secondNum
                 performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
+            textFieldTwoIsBlank()
         }
+        textFieldOneIsBlank()
     }
     
     
@@ -59,7 +65,9 @@ class ViewController: UIViewController {
                 result = firstNum * secondNum
                 performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
+            textFieldTwoIsBlank()
         }
+        textFieldOneIsBlank()
     }
     
     
@@ -70,7 +78,29 @@ class ViewController: UIViewController {
                 result = firstNum / secondNum
                 performSegue(withIdentifier: theAnswerSegue, sender: self)
             }
+            textFieldTwoIsBlank()
         }
+        textFieldOneIsBlank()
+    }
+    
+    
+    func textFieldOneIsBlank() {
+        
+        let textFieldOne = UIAlertController(title: "No Value Entered", message: "Please add a value to the First TextField.", preferredStyle: .alert)
+        
+        textFieldOne.addAction(UIAlertAction(title: "Got It!", style: .cancel, handler: nil))
+        
+        self.present(textFieldOne, animated: true, completion: nil)
+    }
+    
+    
+    func textFieldTwoIsBlank() {
+        
+        let textFieldTwo = UIAlertController(title: "No Value Entered", message: "Please add a value to the Second TextField.", preferredStyle: .alert)
+        
+        textFieldTwo.addAction(UIAlertAction(title: "Got It!", style: .cancel, handler: nil))
+        
+        self.present(textFieldTwo, animated: true, completion: nil)
     }
     
     
